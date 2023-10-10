@@ -7,11 +7,12 @@ def get_random_dog_image():
     data = response.json()
     pprint.pprint(data)
 
-def get_list_of_breeds():
+def get_number_of_breeds():
     base_url = "https://dog.ceo/api"
     response = requests.get(f"{base_url}/breeds/list")
     data = response.json()
-    pprint.pprint(data)
+    breeds_count = len(data.get("message", []))
+    pprint.pprint(breeds_count)
 
 def get_random_dog_image_by_breed(breed):
     base_url = "https://dog.ceo/api"
@@ -34,11 +35,11 @@ def get_random_dog_image_by_sub_breed(breed, sub_breed):
 if __name__ == '__main__':
     print("Рандомное изображение собаки:")
     get_random_dog_image()
-    print("\nСписок пород:")
-    get_list_of_breeds()
+    print("\nКоличество пород:")
+    get_number_of_breeds()
     print("\nРандомное изображение собаки по породе:")
-    get_random_dog_image_by_breed("bulldog")
-    print("\nСписок подпород:")
-    get_list_of_sub_breeds("hound")
+    get_random_dog_image_by_breed("pug")
+    print("\nСписок подпород у породы:")
+    get_list_of_sub_breeds("terrier")
     print("\nРандомное изображение собаки по подпороде:")
-    get_random_dog_image_by_sub_breed("hound", "afghan")
+    get_random_dog_image_by_sub_breed("terrier", "fox")
